@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import { Lang } from "@/lib/translations";
-import ScrollProgress from "@/components/ScrollProgress";
-import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import AboutSection from "@/components/AboutSection";
-import DonateSection from "@/components/DonateSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/public/ScrollProgress";
+import Navbar from "@/components/public/Navbar";
+import HeroSection from "@/components/public/HeroSection";
+import ProjectsSection from "@/components/public/ProjectsSection";
+import AboutSection from "@/components/public/AboutSection";
+import DonateSection from "@/components/public/DonateSection";
+import ContactSection from "@/components/public/ContactSection";
+import Footer from "@/components/public/Footer";
 
 export default function Home() {
   const [lang, setLang] = useState<Lang>("fr");
