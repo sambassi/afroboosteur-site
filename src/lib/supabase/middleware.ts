@@ -2,6 +2,15 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function updateSession(request: NextRequest) {
+  // Inscription publique désactivée : toute requête vers /register est
+  // redirigée vers /login (les comptes admin sont créés côté Supabase).
+  if (request.nextUrl.pathname === "/register") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/login";
+    url.search = "";
+    return NextResponse.redirect(url);
+  }
+
   let supabaseResponse = NextResponse.next({
     request,
   });

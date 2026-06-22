@@ -122,16 +122,6 @@ function LoginForm() {
             {loading ? "Connexion..." : "Se connecter"}
           </button>
         </form>
-
-        <div className="mt-6 text-center text-sm text-gray-400">
-          Pas encore de compte ?{" "}
-          <Link
-            href="/register"
-            className="text-[#ff00ff] hover:text-[#8a2be2] transition-colors"
-          >
-            Inscription
-          </Link>
-        </div>
       </div>
 
       <div className="text-center mt-6">
