@@ -9,12 +9,45 @@ interface ContactSectionProps {
 
 export default function ContactSection({ lang }: ContactSectionProps) {
   const t = translations[lang].contact;
-  const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", message: "", company: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const onChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 3000);
+    setStatus("sending");
+    setErrorMsg("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        setStatus("sent");
+        setForm({ name: "", email: "", message: "", company: "" });
+        setTimeout(() => setStatus("idle"), 6000);
+      } else {
+        setStatus("error");
+        setErrorMsg(
+          lang === "fr"
+            ? "Échec de l'envoi. Réessayez ou écrivez-nous à contact@afroboosteur.com."
+            : "Sending failed. Please retry or email contact@afroboosteur.com."
+        );
+      }
+    } catch {
+      setStatus("error");
+      setErrorMsg(
+        lang === "fr"
+          ? "Échec de l'envoi. Vérifiez votre connexion et réessayez."
+          : "Sending failed. Check your connection and retry."
+      );
+    }
   };
 
   return (
@@ -35,7 +68,11 @@ export default function ContactSection({ lang }: ContactSectionProps) {
                 <label className="block text-gray-300 font-semibold mb-2">{t.name}</label>
                 <input
                   type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={onChange}
                   required
+                  maxLength={100}
                   placeholder={t.namePlaceholder}
                   className="w-full px-5 py-3.5 text-white bg-[#1a0a1a]/60 border-2 border-purple-500/40 rounded-xl outline-none transition-all duration-300 focus:border-fuchsia-500 focus:shadow-[0_0_25px_rgba(255,0,255,0.4)] placeholder:text-gray-500"
                 />
@@ -44,7 +81,11 @@ export default function ContactSection({ lang }: ContactSectionProps) {
                 <label className="block text-gray-300 font-semibold mb-2">{t.email}</label>
                 <input
                   type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={onChange}
                   required
+                  maxLength={200}
                   placeholder={t.emailPlaceholder}
                   className="w-full px-5 py-3.5 text-white bg-[#1a0a1a]/60 border-2 border-purple-500/40 rounded-xl outline-none transition-all duration-300 focus:border-fuchsia-500 focus:shadow-[0_0_25px_rgba(255,0,255,0.4)] placeholder:text-gray-500"
                 />
@@ -52,20 +93,61 @@ export default function ContactSection({ lang }: ContactSectionProps) {
               <div>
                 <label className="block text-gray-300 font-semibold mb-2">{t.message}</label>
                 <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={onChange}
                   required
+                  minLength={5}
+                  maxLength={5000}
                   rows={5}
                   placeholder={t.messagePlaceholder}
                   className="w-full px-5 py-3.5 text-white bg-[#1a0a1a]/60 border-2 border-purple-500/40 rounded-xl outline-none transition-all duration-300 focus:border-fuchsia-500 focus:shadow-[0_0_25px_rgba(255,0,255,0.4)] placeholder:text-gray-500 resize-y font-[inherit]"
                 />
               </div>
+              {/* Honeypot anti-spam (invisible pour les humains) */}
+              <input
+                type="text"
+                name="company"
+                value={form.company}
+                onChange={onChange}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
+
+              {status === "error" && (
+                <p className="text-red-400 text-sm" role="alert">
+                  {errorMsg}
+                </p>
+              )}
+              {status === "sent" && (
+                <p className="text-green-400 text-sm">
+                  {lang === "fr"
+                    ? "Message envoyé ! Nous vous répondrons bientôt."
+                    : "Message sent! We'll get back to you soon."}
+                </p>
+              )}
+
               <button
                 type="submit"
-                className="w-full py-4 text-lg font-bold text-white bg-gradient-to-r from-purple-600 to-fuchsia-500 rounded-xl shadow-[0_4px_20px_rgba(138,43,226,0.4)] hover:-translate-y-0.5 hover:shadow-[0_6px_30px_rgba(255,0,255,0.6)] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                disabled={status === "sending"}
+                className="w-full py-4 text-lg font-bold text-white bg-gradient-to-r from-purple-600 to-fuchsia-500 rounded-xl shadow-[0_4px_20px_rgba(138,43,226,0.4)] hover:-translate-y-0.5 hover:shadow-[0_6px_30px_rgba(255,0,255,0.6)] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span>{sent ? (lang === "fr" ? "Message envoyé !" : "Message sent!") : t.send}</span>
+                <span>
+                  {status === "sending"
+                    ? lang === "fr"
+                      ? "Envoi..."
+                      : "Sending..."
+                    : status === "sent"
+                      ? lang === "fr"
+                        ? "Message envoyé !"
+                        : "Message sent!"
+                      : t.send}
+                </span>
               </button>
             </form>
           </div>
