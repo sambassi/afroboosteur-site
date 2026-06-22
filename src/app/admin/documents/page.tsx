@@ -9,7 +9,8 @@ type Doc = {
 };
 
 const typeFr: Record<string, string> = {
-  dossier_subvention: "Dossier de subvention", rapport: "Rapport", budget: "Budget", lettre: "Lettre", autre: "Autre",
+  dossier_subvention: "Dossier de subvention", rapport: "Rapport", budget: "Budget", lettre: "Lettre",
+  statuts: "Statuts", pv: "Procès-verbal", contrat: "Contrat", reglement: "Règlement", autre: "Autre",
 };
 
 export default function DocumentsPage() {
