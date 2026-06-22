@@ -43,3 +43,15 @@ export async function getCurrentUser(): Promise<CurrentUser | null> {
   }
   return null;
 }
+
+// Admin strict : l'utilisateur courant dont l'email figure dans ADMIN_EMAILS.
+// (Firebase est déjà filtré par getCurrentUser ; ceci sécurise aussi la voie Supabase.)
+export async function requireAdmin(): Promise<CurrentUser | null> {
+  const user = await getCurrentUser();
+  if (!user) return null;
+  const allow = adminEmails();
+  if (allow.length && !(user.email && allow.includes(user.email.toLowerCase()))) {
+    return null;
+  }
+  return user;
+}
