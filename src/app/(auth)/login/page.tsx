@@ -1,6 +1,8 @@
 "use client";
 
 import { Suspense, useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase/client";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -21,12 +23,33 @@ function LoginForm() {
     setLoading(true);
     setError("");
 
+    // 1) Firebase (nouveau fournisseur d'identité)
+    try {
+      const cred = await signInWithEmailAndPassword(auth, email, password);
+      const idToken = await cred.user.getIdToken();
+      const res = await fetch("/api/auth/firebase-login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idToken }),
+      });
+      if (res.ok) {
+        router.push(redirect);
+        router.refresh();
+        return;
+      }
+      const data = await res.json().catch(() => ({}));
+      setError(data.error || "Accès non autorisé.");
+      setLoading(false);
+      return;
+    } catch {
+      // 2) Repli Supabase (transition — tant que Supabase reste actif)
+    }
+
     const supabase = createClient();
     const { error: authError } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-
     if (authError) {
       setError(
         authError.message === "Invalid login credentials"
@@ -36,7 +59,6 @@ function LoginForm() {
       setLoading(false);
       return;
     }
-
     router.push(redirect);
     router.refresh();
   };

@@ -17,6 +17,8 @@ import {
   GraduationCap,
 } from "lucide-react";
 import { useState } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "@/lib/firebase/client";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 
@@ -64,8 +66,24 @@ export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
 
   const handleLogout = async () => {
-    const supabase = createClient();
-    await supabase.auth.signOut();
+    // Efface le cookie de session Firebase côté serveur
+    try {
+      await fetch("/api/auth/firebase-logout", { method: "POST" });
+    } catch {
+      /* ignore */
+    }
+    try {
+      await signOut(auth);
+    } catch {
+      /* ignore */
+    }
+    // Déconnexion Supabase (transition)
+    try {
+      const supabase = createClient();
+      await supabase.auth.signOut();
+    } catch {
+      /* ignore */
+    }
     router.push("/login");
     router.refresh();
   };

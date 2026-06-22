@@ -1,27 +1,30 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/lib/firebase/client";
 import { createClient } from "@/lib/supabase/client";
 import { Bell, Search, Menu } from "lucide-react";
-import type { User } from "@supabase/supabase-js";
 
 export default function TopBar() {
-  const [user, setUser] = useState<User | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
+    // Firebase (prioritaire) puis Supabase (transition)
+    const unsub = onAuthStateChanged(auth, (u) => {
+      if (u?.email) setEmail(u.email);
+    });
     const supabase = createClient();
     supabase.auth.getUser().then(({ data }) => {
-      setUser(data.user);
+      if (data.user?.email) setEmail((prev) => prev ?? data.user!.email!);
     });
+    return () => unsub();
   }, []);
 
-  const displayName =
-    user?.user_metadata?.full_name ||
-    user?.email?.split("@")[0] ||
-    "Utilisateur";
+  const displayName = email?.split("@")[0] || "Administrateur";
 
   const initials = displayName
-    .split(" ")
+    .split(/[\s.]+/)
     .map((n: string) => n[0])
     .join("")
     .toUpperCase()

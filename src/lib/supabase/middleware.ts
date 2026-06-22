@@ -42,13 +42,10 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Protected admin routes
-  if (request.nextUrl.pathname.startsWith("/admin") && !user) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/login";
-    url.searchParams.set("redirect", request.nextUrl.pathname);
-    return NextResponse.redirect(url);
-  }
+  // NB : la protection des routes /admin est désormais assurée par le layout
+  // serveur src/app/admin/layout.tsx (qui accepte une session Firebase OU
+  // Supabase). Le middleware se contente de rafraîchir la session Supabase
+  // et de gérer les redirections des pages d'authentification.
 
   // Redirect logged-in users away from auth pages
   if (
