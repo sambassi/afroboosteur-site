@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Afroboosteur - Culture, Sant\u00e9 & Lien Social",
+  metadataBase: new URL("https://afroboosteur.com"),
+  title: "Afroboosteur - Culture, Santé & Lien Social",
   description:
-    "Association Afroboosteur - Promouvoir la culture afrobeat et le bien-\u00eatre \u00e0 Neuch\u00e2tel \u00e0 travers des activit\u00e9s sportives et artistiques innovantes.",
+    "Association Afroboosteur - Promouvoir la culture afrobeat et le bien-être à Neuchâtel à travers des activités sportives et artistiques innovantes.",
+  manifest: "/manifest.webmanifest",
   keywords: [
     "Afroboosteur",
     "Afroboost",
-    "Neuch\u00e2tel",
+    "Neuchâtel",
     "culture",
     "afrobeat",
     "silent party",
@@ -17,9 +19,9 @@ export const metadata: Metadata = {
     "danse",
   ],
   openGraph: {
-    title: "Afroboosteur - Culture, Sant\u00e9 & Lien Social",
+    title: "Afroboosteur - Culture, Santé & Lien Social",
     description:
-      "Promouvoir la culture afrobeat et le bien-\u00eatre \u00e0 Neuch\u00e2tel",
+      "Promouvoir la culture afrobeat et le bien-être à Neuchâtel",
     url: "https://afroboosteur.com",
     siteName: "Afroboosteur",
     locale: "fr_CH",

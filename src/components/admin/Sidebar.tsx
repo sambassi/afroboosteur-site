@@ -14,6 +14,7 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
+  GraduationCap,
 } from "lucide-react";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
@@ -132,6 +133,26 @@ export default function Sidebar() {
             </Link>
           );
         })}
+
+        {/* Passerelle vers l'administration de la plateforme Formation */}
+        <a
+          href="https://formation.afroboosteur.com/admin-login"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group text-gray-400 hover:text-white hover:bg-[#8a2be2]/10"
+          title={collapsed ? "Admin Formation" : undefined}
+        >
+          <GraduationCap
+            size={20}
+            className="text-gray-500 group-hover:text-[#8a2be2]"
+          />
+          {!collapsed && (
+            <span className="text-sm font-medium flex items-center gap-1">
+              Admin Formation
+              <span className="text-[10px] text-gray-600">↗</span>
+            </span>
+          )}
+        </a>
       </nav>
 
       {/* Export PDF button */}

@@ -78,14 +78,22 @@ export default function Footer({ lang }: FooterProps) {
             <h3 className="text-white font-bold text-lg mb-4">{t.quickLinks}</h3>
             <ul className="space-y-3">
               {[
-                { href: "#projects", label: tNav.projects },
-                { href: "#about", label: tNav.about },
-                { href: "#donate", label: tNav.donate },
-                { href: "#contact", label: tNav.contact },
+                { href: "#projects", label: tNav.projects, external: false },
+                { href: "#about", label: tNav.about, external: false },
+                { href: "#donate", label: tNav.donate, external: false },
+                { href: "#contact", label: tNav.contact, external: false },
+                {
+                  href: "https://formation.afroboosteur.com",
+                  label: tNav.becomeInstructor,
+                  external: true,
+                },
               ].map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
+                    {...(link.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                     className="text-gray-400 text-sm transition-all duration-300 hover:text-fuchsia-500 hover:translate-x-1 inline-block"
                   >
                     {link.label}

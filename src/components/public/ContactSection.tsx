@@ -65,7 +65,7 @@ export default function ContactSection({ lang }: ContactSectionProps) {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span>{sent ? (lang === "fr" ? "Message envoy\u00e9 !" : "Message sent!") : t.send}</span>
+                <span>{sent ? (lang === "fr" ? "Message envoyé !" : "Message sent!") : t.send}</span>
               </button>
             </form>
           </div>
@@ -81,7 +81,14 @@ export default function ContactSection({ lang }: ContactSectionProps) {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white mb-1">{t.infoEmail}</h3>
-                <p className="text-gray-300">contact.artboost@gmail.com</p>
+                <p className="text-gray-300">
+                  <a
+                    href="mailto:contact@afroboosteur.com"
+                    className="hover:text-fuchsia-400 transition-colors"
+                  >
+                    contact@afroboosteur.com
+                  </a>
+                </p>
               </div>
             </div>
 
@@ -95,7 +102,7 @@ export default function ContactSection({ lang }: ContactSectionProps) {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white mb-1">{t.infoAddress}</h3>
-                <p className="text-gray-300">Rue Maillefer 39, 2000 Neuch\u00e2tel, Suisse</p>
+                <p className="text-gray-300">Rue Maillefer 39, 2000 Neuchâtel, Suisse</p>
               </div>
             </div>
 
@@ -120,7 +127,7 @@ export default function ContactSection({ lang }: ContactSectionProps) {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white mb-1">N\u00b0 IDE</h3>
+                <h3 className="text-lg font-bold text-white mb-1">N° IDE</h3>
                 <p className="text-gray-300">CHE-407.097.646</p>
               </div>
             </div>

@@ -56,6 +56,14 @@ export default function Navbar({ lang, onLangChange }: NavbarProps) {
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-fuchsia-500 transition-all duration-300 -translate-x-1/2 group-hover:w-4/5" />
               </a>
             ))}
+            <a
+              href="https://formation.afroboosteur.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-2 px-4 py-2 rounded-lg text-sm font-bold text-white bg-gradient-to-r from-purple-600 to-fuchsia-500 shadow-[0_4px_15px_rgba(138,43,226,0.4)] hover:-translate-y-0.5 hover:shadow-[0_6px_25px_rgba(255,0,255,0.6)] transition-all duration-300 whitespace-nowrap"
+            >
+              {t.becomeInstructor}
+            </a>
             <div className="flex gap-2 ml-4">
               <button
                 onClick={() => onLangChange("fr")}
@@ -121,6 +129,15 @@ export default function Navbar({ lang, onLangChange }: NavbarProps) {
                 {link.label}
               </a>
             ))}
+            <a
+              href="https://formation.afroboosteur.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileOpen(false)}
+              className="w-full text-center px-4 py-3 mt-1 rounded-lg font-bold text-white bg-gradient-to-r from-purple-600 to-fuchsia-500 shadow-[0_4px_15px_rgba(138,43,226,0.4)] transition-all"
+            >
+              {t.becomeInstructor}
+            </a>
             <div className="flex justify-center gap-3 pt-3">
               <button
                 onClick={() => { onLangChange("fr"); setMobileOpen(false); }}

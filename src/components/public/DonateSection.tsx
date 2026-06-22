@@ -84,7 +84,7 @@ export default function DonateSection({ lang }: DonateSectionProps) {
               if (finalAmount > 0) {
                 alert(
                   lang === "fr"
-                    ? `Merci pour votre don de ${finalAmount} CHF ! (Le paiement sera int\u00e9gr\u00e9 prochainement)`
+                    ? `Merci pour votre don de ${finalAmount} CHF ! (Le paiement sera intégré prochainement)`
                     : `Thank you for your donation of ${finalAmount} CHF! (Payment will be integrated soon)`
                 );
               }

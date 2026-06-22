@@ -4,45 +4,46 @@ export const translations = {
   fr: {
     nav: {
       projects: "Projets",
-      about: "\u00c0 propos",
+      about: "À propos",
       donate: "Faire un don",
       contact: "Contact",
+      becomeInstructor: "Devenir Instructeur",
     },
     hero: {
-      title: "Afroboosteur : Culture, Sant\u00e9 & Lien Social",
+      title: "Afroboosteur : Culture, Santé & Lien Social",
       subtitle:
-        "Promouvoir la culture afrobeat et le bien-\u00eatre \u00e0 Neuch\u00e2tel \u00e0 travers des activit\u00e9s sportives et artistiques innovantes.",
-      cta: "D\u00e9couvrir nos actions",
+        "Promouvoir la culture afrobeat et le bien-être à Neuchâtel à travers des activités sportives et artistiques innovantes.",
+      cta: "Découvrir nos actions",
     },
     projects: {
       sectionTitle: "Projets en cours",
-      sectionSubtitle: "Soutenez les projets qui cr\u00e9ent l\u2019avenir",
-      funded: "Financ\u00e9",
+      sectionSubtitle: "Soutenez les projets qui créent l’avenir",
+      funded: "Financé",
     },
     about: {
       sectionTitle: "Afroboosteur",
       missionTitle: "Notre Mission",
       missionText1:
-        "Fond\u00e9e en 2024 et bas\u00e9e \u00e0 Neuch\u00e2tel (Rue Maillefer 39), Afroboosteur est une association \u00e0 but non lucratif. Nous utilisons l\u2019Afrobeat comme vecteur d\u2019\u00e9nergie positive pour rassembler les communaut\u00e9s, sans barri\u00e8re d\u2019\u00e2ge ou d\u2019origine.",
+        "Fondée en 2024 et basée à Neuchâtel (Rue Maillefer 39), Afroboosteur est une association à but non lucratif. Nous utilisons l’Afrobeat comme vecteur d’énergie positive pour rassembler les communautés, sans barrière d’âge ou d’origine.",
       missionText2:
-        "Nos axes prioritaires sont la sant\u00e9 publique (lutte contre la s\u00e9dentarit\u00e9), la diversit\u00e9 culturelle et l\u2019innovation sportive, notamment via notre concept unique de Silent Party.",
+        "Nos axes prioritaires sont la santé publique (lutte contre la sédentarité), la diversité culturelle et l’innovation sportive, notamment via notre concept unique de Silent Party.",
       stats: {
         members: "Membres actifs",
-        volunteers: "B\u00e9n\u00e9voles",
+        volunteers: "Bénévoles",
         founded: "Fondation",
       },
     },
     donate: {
       sectionTitle: "Faire un don",
-      sectionSubtitle: "Votre contribution fait toute la diff\u00e9rence",
+      sectionSubtitle: "Votre contribution fait toute la différence",
       chooseAmount: "Choisissez un montant",
       customAmount: "Ou un montant libre",
-      submit: "Proc\u00e9der au paiement",
-      disclaimer: "Paiement s\u00e9curis\u00e9 - 100% de votre don va aux projets",
+      submit: "Procéder au paiement",
+      disclaimer: "Paiement sécurisé - 100% de votre don va aux projets",
     },
     contact: {
       sectionTitle: "Contactez-nous",
-      sectionSubtitle: "Une question ? Un projet ? \u00c9crivez-nous !",
+      sectionSubtitle: "Une question ? Un projet ? Écrivez-nous !",
       name: "Nom complet",
       email: "Email",
       message: "Message",
@@ -52,21 +53,21 @@ export const translations = {
       messagePlaceholder: "Votre message...",
       infoEmail: "Email",
       infoAddress: "Adresse",
-      infoPhone: "T\u00e9l\u00e9phone",
+      infoPhone: "Téléphone",
       infoWhatsapp: "WhatsApp",
     },
     footer: {
       tagline:
-        "Association Afroboosteur \u2014 Dynamiser la culture et le sport \u00e0 Neuch\u00e2tel.",
+        "Association Afroboosteur — Dynamiser la culture et le sport à Neuchâtel.",
       quickLinks: "Liens rapides",
       support: "Support",
       newsletter: "Newsletter",
-      newsletterText: "Restez inform\u00e9 de nos nouveaux projets",
+      newsletterText: "Restez informé de nos nouveaux projets",
       faq: "FAQ",
-      help: "Centre d\u2019aide",
-      privacy: "Confidentialit\u00e9",
+      help: "Centre d’aide",
+      privacy: "Confidentialité",
       terms: "Conditions",
-      copyright: "\u00a9 2025 Afroboosteur \u2014 Propuls\u00e9 par l\u2019Art",
+      copyright: "© 2025 Afroboosteur — Propulsé par l’Art",
     },
   },
   en: {
@@ -75,11 +76,12 @@ export const translations = {
       about: "About",
       donate: "Donate",
       contact: "Contact",
+      becomeInstructor: "Become an Instructor",
     },
     hero: {
       title: "Afroboosteur: Culture, Health & Social Bond",
       subtitle:
-        "Promoting afrobeat culture and well-being in Neuch\u00e2tel through innovative sports and artistic activities.",
+        "Promoting afrobeat culture and well-being in Neuchâtel through innovative sports and artistic activities.",
       cta: "Discover our actions",
     },
     projects: {
@@ -91,7 +93,7 @@ export const translations = {
       sectionTitle: "Afroboosteur",
       missionTitle: "Our Mission",
       missionText1:
-        "Founded in 2024 and based in Neuch\u00e2tel (Rue Maillefer 39), Afroboosteur is a non-profit association. We use Afrobeat as a vehicle for positive energy to bring communities together, without age or origin barriers.",
+        "Founded in 2024 and based in Neuchâtel (Rue Maillefer 39), Afroboosteur is a non-profit association. We use Afrobeat as a vehicle for positive energy to bring communities together, without age or origin barriers.",
       missionText2:
         "Our key priorities are public health (fighting sedentary lifestyles), cultural diversity and sports innovation, particularly through our unique Silent Party concept.",
       stats: {
@@ -125,7 +127,7 @@ export const translations = {
     },
     footer: {
       tagline:
-        "Afroboosteur Association \u2014 Energizing culture and sport in Neuch\u00e2tel.",
+        "Afroboosteur Association — Energizing culture and sport in Neuchâtel.",
       quickLinks: "Quick Links",
       support: "Support",
       newsletter: "Newsletter",
@@ -134,7 +136,7 @@ export const translations = {
       help: "Help Center",
       privacy: "Privacy",
       terms: "Terms",
-      copyright: "\u00a9 2025 Afroboosteur \u2014 Powered by Art",
+      copyright: "© 2025 Afroboosteur — Powered by Art",
     },
   },
 } as const;
@@ -144,7 +146,7 @@ export const projectsData = [
     id: 1,
     title: { fr: "Afroboost Silent Party 2025", en: "Afroboost Silent Party 2025" },
     description: {
-      fr: "Un \u00e9v\u00e9nement immersif de cardio-danse avec casques audio. Objectif : 70 participants pour c\u00e9l\u00e9brer la diversit\u00e9, la sant\u00e9 et la coh\u00e9sion sociale le 31 d\u00e9cembre.",
+      fr: "Un événement immersif de cardio-danse avec casques audio. Objectif : 70 participants pour célébrer la diversité, la santé et la cohésion sociale le 31 décembre.",
       en: "An immersive cardio-dance event with audio headsets. Goal: 70 participants to celebrate diversity, health and social cohesion on December 31st.",
     },
     funded: 3500,
@@ -155,7 +157,7 @@ export const projectsData = [
     id: 2,
     title: { fr: "Cours Hebdomadaires Afroboost", en: "Weekly Afroboost Classes" },
     description: {
-      fr: "Des cours de cardio-danse afrobeat chaque mercredi et dimanche, ouverts \u00e0 tous. Casques audio pour une immersion totale sans nuisance sonore.",
+      fr: "Des cours de cardio-danse afrobeat chaque mercredi et dimanche, ouverts à tous. Casques audio pour une immersion totale sans nuisance sonore.",
       en: "Afrobeat cardio-dance classes every Wednesday and Sunday, open to all. Audio headsets for total immersion without noise pollution.",
     },
     funded: 4500,
@@ -164,9 +166,9 @@ export const projectsData = [
   },
   {
     id: 3,
-    title: { fr: "Production Vid\u00e9o & Communication", en: "Video Production & Communication" },
+    title: { fr: "Production Vidéo & Communication", en: "Video Production & Communication" },
     description: {
-      fr: "Cr\u00e9ation de contenu vid\u00e9o professionnel : teasers, stories et promotions pour \u00e9largir la communaut\u00e9 Afroboosteur.",
+      fr: "Création de contenu vidéo professionnel : teasers, stories et promotions pour élargir la communauté Afroboosteur.",
       en: "Professional video content creation: teasers, stories and promotions to expand the Afroboosteur community.",
     },
     funded: 9100,
