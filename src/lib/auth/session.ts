@@ -4,6 +4,8 @@ import { adminAuth } from "@/lib/firebase/admin";
 import { createClient } from "@/lib/supabase/server";
 
 export const FB_SESSION_COOKIE = "fb_session";
+// Cookie de session partagé entre afroboosteur.com et ses sous-domaines (SSO).
+export const COOKIE_DOMAIN = process.env.SSO_COOKIE_DOMAIN || ".afroboosteur.com";
 
 export function adminEmails(): string[] {
   return (process.env.FIREBASE_ADMIN_EMAILS || "")
