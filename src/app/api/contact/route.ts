@@ -62,11 +62,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "smtp_not_configured" }, { status: 500 });
   }
 
+  const secure = port === 465; // 465 = SSL direct ; 587 = STARTTLS
   const transporter = nodemailer.createTransport({
     host,
     port,
-    secure: port === 465, // SSL direct sur 465
+    secure,
+    requireTLS: !secure, // force STARTTLS sur 587 (jamais d'auth en clair)
     auth: { user, pass },
+    connectionTimeout: 12000,
+    greetingTimeout: 12000,
+    socketTimeout: 20000,
   });
 
   try {
