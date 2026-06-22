@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "@/lib/firebase/client";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
@@ -17,6 +17,28 @@ function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect") || "/admin/dashboard";
+  const [resetMsg, setResetMsg] = useState("");
+  const [resetLoading, setResetLoading] = useState(false);
+
+  const handleReset = async () => {
+    setError("");
+    setResetMsg("");
+    if (!email) {
+      setError("Entrez votre email ci-dessus, puis cliquez sur « Mot de passe oublié ».");
+      return;
+    }
+    setResetLoading(true);
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch {
+      // On n'expose pas si le compte existe (sécurité).
+    } finally {
+      setResetLoading(false);
+      setResetMsg(
+        "Si un compte existe pour cet email, un lien de réinitialisation vient d'être envoyé. Pensez à vérifier vos spams."
+      );
+    }
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -144,6 +166,23 @@ function LoginForm() {
             {loading ? "Connexion..." : "Se connecter"}
           </button>
         </form>
+
+        {resetMsg && (
+          <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-3 mt-4 text-green-400 text-sm">
+            {resetMsg}
+          </div>
+        )}
+
+        <div className="text-center mt-4">
+          <button
+            type="button"
+            onClick={handleReset}
+            disabled={resetLoading}
+            className="text-sm text-[#ff00ff] hover:text-[#8a2be2] transition-colors disabled:opacity-50"
+          >
+            {resetLoading ? "Envoi..." : "Mot de passe oublié ?"}
+          </button>
+        </div>
       </div>
 
       <div className="text-center mt-6">
